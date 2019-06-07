@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.MariaDBDialect
+        </property>
+
+        <property name="hibernate.connection.driver_class">
+            com.mysql.cj.jdbc.Driver
+        </property>
+
+        <property name="hibernate.connection.url">
+            jdbc:mysql://p32.pl:3306/keystrokedynamics
+        </property>
+
+        <property name="hibernate.connection.username">
+            keystrokedynamics
+        </property>
+
+        <property name="hibernate.connection.password">
+            pw0tDwkRA1eyM5w8
+        </property>
+
+        <property name="show_sql">
+            true
+        </property>
+
+        <!--<property name="hbm2ddl.auto">
+            create
+        </property>-->
+
+        <!-- List of XML mapping files -->
+        <mapping class="pl.p32.app.model.Person"/>
+        <mapping class="pl.p32.app.model.KeyStroke"/>
+
+    </session-factory>
+</hibernate-configuration>
