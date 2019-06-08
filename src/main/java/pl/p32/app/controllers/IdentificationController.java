@@ -62,7 +62,7 @@ public class IdentificationController implements Initializable {
 
             Person person = IdentificationService.identify(keyStrokes, metric, k);
             String message = "Zidentyfikowano jako " + person.getName();
-            System.out.println(person);
+//            System.out.println(person);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.CLOSE);
             alert.showAndWait();

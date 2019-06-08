@@ -34,7 +34,7 @@ public class KNN implements Classifier {
         List<Map.Entry<Person, Long>> sorted = counted.entrySet().stream()
                 .sorted((e1, e2) -> compare(e2.getValue(), e1.getValue()))
                 .collect(toList());
-        System.out.println(sorted);
+//        System.out.println(sorted);
         return sorted.get(0).getKey();
     }
 }

@@ -7,6 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.p32.app.controllers.RootController;
 import pl.p32.app.model.repository.PersonRepository;
+import pl.p32.app.statstics.ExaminationResult;
+import pl.p32.app.statstics.Statistics;
+
+import java.util.List;
 
 public class Main extends Application {
 
@@ -26,5 +30,8 @@ public class Main extends Application {
 
         Runnable r = PersonRepository::getInstance;
         new Thread(r).start();
+        /*Statistics statistics = new Statistics();
+        List<ExaminationResult> results = statistics.statisticsForSystem();
+        results.forEach(System.out::println);*/
     }
 }

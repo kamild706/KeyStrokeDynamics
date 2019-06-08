@@ -1,10 +1,11 @@
 package pl.p32.app.model.repository;
 
-import org.hibernate.Session;
 import pl.p32.app.model.KeyStroke;
 
-import javax.persistence.Query;
 import java.util.List;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 public class KeyStrokeRepository extends AbstractRepository<KeyStroke> {
     private static KeyStrokeRepository instance = new KeyStrokeRepository();
@@ -17,8 +18,17 @@ public class KeyStrokeRepository extends AbstractRepository<KeyStroke> {
         super(KeyStroke.class);
     }
 
-    /*public List<List<KeyStroke>> findByPersonAndProbe() {
-        Session session = openSession();
-        Query query = session.createQuery()
-    }*/
+    public List<List<KeyStroke>> findAllByPersonAndProbe() {
+        List<KeyStroke> allKeyStrokes = instance.findAll();
+        List<List<KeyStroke>> byPersonAndProbe = allKeyStrokes
+                .stream()
+                .collect(groupingBy(KeyStroke::getPerson, groupingBy(KeyStroke::getProbeId)))
+                .values()
+                .stream()
+                .flatMap(m -> m.values().stream())
+                .collect(toList());
+
+        byPersonAndProbe.forEach(l -> l.sort(KeyStroke.COMPARE_KEY_VALUE));
+        return byPersonAndProbe;
+    }
 }
